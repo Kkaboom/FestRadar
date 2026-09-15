@@ -29,7 +29,7 @@ function esc(value = "") {
 
 async function loadStatus() {
   const data = await api("admin-status");
-  $("#aSources").textContent = data.stats.sources;
+  $("#aSources").textContent = data.stats.sources + (data.stats.builtInSources || 0);
   $("#aEvents").textContent = data.stats.events;
   $("#aManual").textContent = data.stats.manualEvents;
   $("#aState").textContent = data.scrape.running ? "actif" : "repos";
