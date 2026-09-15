@@ -1,6 +1,7 @@
 import { connectLambda } from "@netlify/blobs";
 import { isAdmin } from "./_lib/auth.mjs";
 import { getSources, getEvents, getScrapeMeta } from "./_lib/db.mjs";
+import { BUILTIN_SOURCES } from "./_lib/source-catalog.mjs";
 import { json } from "./_lib/http.mjs";
 
 export async function handler(event) {
@@ -14,7 +15,9 @@ export async function handler(event) {
     stats: {
       sources: sources.length,
       enabledSources: sources.filter(s => s.enabled !== false).length,
+      builtInSources: BUILTIN_SOURCES.length,
       events: events.length,
+      verifiedEvents: events.filter(e => e.verified).length,
       manualEvents: events.filter(e => e.manual).length,
     },
   });
