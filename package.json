@@ -1,0 +1,10 @@
+{
+  "name": "festradar",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Agrégateur d'événements sans IA, avec panneau admin et scraping de sources.",
+  "dependencies": {
+    "@netlify/blobs": "11.1.0"
+  }
+}

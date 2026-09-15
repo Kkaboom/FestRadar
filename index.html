@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0b0d10" />
+  <title>FestRadar — fêtes & événements</title>
+  <meta name="description" content="Radar personnel de fêtes, parades, carnavals et festivals." />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/">Fest<span>Radar</span></a>
+    <nav>
+      <a href="#events">Événements</a>
+      <a class="admin-link" href="/admin.html">Admin</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow">RADAR MONDIAL DE FÊTES</div>
+      <h1>Les grosses fêtes à venir,<br><span>sans fouiller Internet toi-même.</span></h1>
+      <p>Parades, carnavals, festivals, fêtes populaires et événements ajoutés depuis tes propres sources.</p>
+      <div class="hero-stats">
+        <div><strong id="statEvents">—</strong><span>événements</span></div>
+        <div><strong id="statCountries">—</strong><span>pays</span></div>
+        <div><strong id="statSoon">—</strong><span>dans 30 jours</span></div>
+      </div>
+    </section>
+
+    <section class="filters" id="events">
+      <label class="searchbox">
+        <span>⌕</span>
+        <input id="search" type="search" placeholder="Street Parade, Zürich, carnaval…" autocomplete="off" />
+      </label>
+      <select id="country"><option value="">Tous les pays</option></select>
+      <select id="category"><option value="">Toutes les catégories</option></select>
+      <select id="period">
+        <option value="all">Toutes les dates</option>
+        <option value="7">7 prochains jours</option>
+        <option value="30">30 prochains jours</option>
+        <option value="90">3 prochains mois</option>
+        <option value="365">12 prochains mois</option>
+      </select>
+    </section>
+
+    <div class="results-head">
+      <div><strong id="resultCount">0</strong> résultat(s)</div>
+      <div id="updatedAt" class="muted">Chargement…</div>
+    </div>
+
+    <section id="eventGrid" class="event-grid" aria-live="polite"></section>
+    <div id="empty" class="empty hidden">
+      <h2>Aucun événement trouvé</h2>
+      <p>Ajoute des sources dans le panneau admin, puis lance une actualisation.</p>
+      <a class="button" href="/admin.html">Ouvrir l'admin</a>
+    </div>
+  </main>
+
+  <footer>
+    <span>FestRadar</span>
+    <span class="muted">Agrégation automatique sans IA.</span>
+  </footer>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

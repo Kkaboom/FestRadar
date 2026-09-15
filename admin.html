@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0b0d10" />
+  <title>FestRadar — Admin</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/">Fest<span>Radar</span></a>
+    <nav><a href="/">← Retour au radar</a><button id="logoutBtn" class="link-button hidden">Déconnexion</button></nav>
+  </header>
+
+  <main class="admin-main">
+    <section id="loginPanel" class="panel login-panel">
+      <div class="eyebrow">ADMINISTRATION</div>
+      <h1>Connexion</h1>
+      <p class="muted">Le mot de passe est vérifié côté serveur. Il n'est jamais stocké dans le JavaScript public.</p>
+      <form id="loginForm" class="stack">
+        <label>Mot de passe<input name="password" type="password" required autocomplete="current-password" /></label>
+        <button class="button primary" type="submit">Se connecter</button>
+      </form>
+      <p id="loginError" class="error"></p>
+    </section>
+
+    <section id="adminPanel" class="hidden">
+      <div class="admin-title-row">
+        <div><div class="eyebrow">ADMINISTRATION</div><h1>Sources & collecte</h1></div>
+        <button id="refreshBtn" class="button primary">↻ Rechercher maintenant</button>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat-card"><strong id="aSources">—</strong><span>sources</span></div>
+        <div class="stat-card"><strong id="aEvents">—</strong><span>événements</span></div>
+        <div class="stat-card"><strong id="aManual">—</strong><span>manuels</span></div>
+        <div class="stat-card"><strong id="aState">—</strong><span>collecteur</span></div>
+      </div>
+
+      <div class="admin-grid">
+        <section class="panel">
+          <h2>Ajouter une source</h2>
+          <p class="muted">Ajoute une page, un flux RSS ou un calendrier ICS. Elle sera réutilisée automatiquement.</p>
+          <form id="sourceForm" class="stack">
+            <label>Nom<input name="name" placeholder="Street Parade — site officiel" required /></label>
+            <label>URL<input name="url" type="url" placeholder="https://…" required /></label>
+            <div class="two-cols">
+              <label>Type
+                <select name="kind">
+                  <option value="auto">Détection automatique</option>
+                  <option value="jsonld">Page HTML / JSON-LD</option>
+                  <option value="ics">Calendrier ICS</option>
+                  <option value="rss">RSS / Atom</option>
+                </select>
+              </label>
+              <label>Pays par défaut<input name="country" placeholder="Suisse" /></label>
+            </div>
+            <label>Tags<input name="tags" placeholder="techno, parade, suisse" /></label>
+            <label class="check"><input name="trusted" type="checkbox" /> Source officielle / très fiable</label>
+            <button class="button" type="submit">+ Ajouter la source</button>
+          </form>
+          <p id="sourceMsg" class="form-msg"></p>
+        </section>
+
+        <section class="panel">
+          <h2>Ajouter un événement manuellement</h2>
+          <p class="muted">Utile quand un site est dynamique, protégé ou mal structuré.</p>
+          <form id="eventForm" class="stack">
+            <label>Nom<input name="title" required placeholder="Nom de la fête" /></label>
+            <div class="two-cols">
+              <label>Début<input name="startDate" type="datetime-local" required /></label>
+              <label>Fin<input name="endDate" type="datetime-local" /></label>
+            </div>
+            <div class="two-cols">
+              <label>Ville<input name="city" placeholder="Zürich" /></label>
+              <label>Pays<input name="country" placeholder="Suisse" /></label>
+            </div>
+            <div class="two-cols">
+              <label>Lieu<input name="venue" placeholder="Seebecken" /></label>
+              <label>Catégorie<input name="category" placeholder="Parade / Techno" /></label>
+            </div>
+            <label>Lien officiel<input name="eventUrl" type="url" placeholder="https://…" /></label>
+            <label>Description<textarea name="description" rows="3"></textarea></label>
+            <button class="button" type="submit">+ Ajouter l'événement</button>
+          </form>
+          <p id="eventMsg" class="form-msg"></p>
+        </section>
+      </div>
+
+      <section class="panel source-list-panel">
+        <div class="section-title-row"><h2>Sources enregistrées</h2><span id="lastRun" class="muted"></span></div>
+        <div id="sourceList" class="source-list"></div>
+      </section>
+    </section>
+  </main>
+  <script type="module" src="/admin.js"></script>
+</body>
+</html>
