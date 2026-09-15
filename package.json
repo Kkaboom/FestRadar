@@ -1,9 +1,9 @@
 {
-  "name": "festradar",
-  "version": "0.1.0",
+  "name": "eventtrack",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
-  "description": "Agrégateur d'événements sans IA, avec panneau admin et scraping de sources.",
+  "description": "Radar techno/rave/club culture sans IA, avec admin et agrégation automatique.",
   "dependencies": {
     "@netlify/blobs": "11.1.0"
   }
